@@ -1,42 +1,586 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* globals.css */
+
+/* Global Font Definitions for Iran Sans */
+@font-face {
+  font-family: 'Iran Sans';
+  /* Correct path relative to src/app/globals.css for Next.js build */
+  src: url('../../public/fonts/IRANSans v5.5/WebFonts/fonts/woff2/IRANSansWeb.woff2') format('woff2'),
+       url('../../public/fonts/IRANSans v5.5/WebFonts/fonts/woff/IRANSansWeb.woff') format('woff'),
+       url('../../public/fonts/IRANSans v5.5/WebFonts/fonts/ttf/IRANSansWeb.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; /* Improves font loading performance */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@font-face {
+  font-family: 'Iran Sans';
+  /* Correct path relative to src/app/globals.css for Next.js build */
+  src: url('../../public/fonts/IRANSans v5.5/WebFonts/fonts/woff2/IRANSansWeb_Bold.woff2') format('woff2'),
+       url('../../public/fonts/IRANSans v5.5/WebFonts/fonts/woff/IRANSansWeb_Bold.woff') format('woff'),
+       url('../../public/fonts/IRANSans v5.5/WebFonts/fonts/ttf/IRANSansWeb_Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap; /* Improves font loading performance */
+}
+
+/* General Body Styles & Global Reusable Classes */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Iran Sans', sans-serif; /* Fallback to sans-serif */
+  background-color: #000000; /* Primary background color */
+  color: #F0F0F0; /* Light text for readability on dark background */
+  line-height: 1.6;
+  direction: rtl; /* Set direction to Right-To-Left for Farsi content */
+  text-align: right; /* Default text alignment for RTL */
+  overflow-x: hidden; /* Prevent horizontal scroll from mobile menu */
+}
+
+/* Class to prevent body scrolling when mobile menu is open */
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* Container for Centering Content */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- Header/Navigation Bar --- */
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #000000;
+  color: #F0F0F0; /* General text color for header */
+  padding: 10px 0; /* Reduced padding */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.main-header .container {
+  display: flex;
+  justify-content: space-between; /* Space out elements */
+  align-items: center;
+}
+
+/* Header Logo Image Styling */
+.logo {
+  flex-shrink: 0;
+  display: block;
+}
+.logo img {
+  height: 40px; /* Adjust height as needed for desktop */
+  width: auto; /* Maintain aspect ratio */
+  vertical-align: middle;
+  transition: transform 0.3s ease;
+}
+.logo img:hover { /* Hover on img inside logo a */
+  transform: scale(1.05);
+}
+
+/* Desktop navigation links */
+.main-nav {
+  flex-grow: 1; /* Allows nav to take available space */
+  display: flex;
+  justify-content: center; /* Center nav items on desktop */
+  align-items: center;
+}
+.main-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 25px; /* Spacing between navigation items */
+}
+.main-nav ul li a {
+  color: #F0F0F0; /* Light gray for regular nav links */
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: 400; /* Normal weight for regular links */
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  padding-bottom: 5px; /* Space for underline */
+  position: relative; /* For the underline */
+}
+.main-nav ul li a:hover {
+  color: #FFC107;
+}
+/* Active link styling */
+.main-nav ul li a.active-link {
+  color: #FFC107; /* Dull Yellow for active link */
+  font-weight: bold;
+}
+.main-nav ul li a.active-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #FFC107;
+  border-radius: 1px;
+}
+
+/* Auth/Profile Button (Common Style) */
+.auth-button {
+  background-color: #FFC107;
+  color: #000000;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Iran Sans', sans-serif;
+}
+.auth-button:hover {
+  background-color: #FFA500;
+  color: #333333;
+}
+
+/* Corrected Login/Signup Button Styling */
+.login-signup-btn {
+    background-color: #FFC107;
+    color: #000000;
+    border: none;
+    padding: 8px 16px; /* Adjusted padding to be smaller */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95em; /* Adjusted font-size to be smaller */
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Iran Sans', sans-serif;
+}
+.login-signup-btn:hover {
+    background-color: #FFA500;
+    color: #333333;
+}
+
+
+/* Desktop specific elements */
+.desktop-header-btn {
+  flex-shrink: 0;
+}
+/* Mobile specific elements (hidden by default on desktop) */
+.mobile-menu-btn-wrapper, .hamburger-menu, .mobile-header-btn {
+  display: none;
+}
+
+
+/* --- HERO SECTION --- */
+.hero-section {
+  position: relative;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #FFC107; /* Dull Yellow for hero text */
+  background-color: #000000; /* Pure black base */
+  /* background-image and background-blend-mode REMOVED */
+  margin-top: 60px;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Set background as requested */
+  box-shadow: inset 0 0 100px rgba(255, 193, 7, 0.2); /* Add box-shadow for halo */
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: 4.5em;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #FFC107;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero-content .slogan {
+  font-size: 1.8em;
+  margin-bottom: 40px;
+  color: #FFC107;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Common CTA Button Style (used in Hero and other sections) */
+.cta-button {
+  background-color: #FFC107;
+  color: #000000;
+  border: none;
+  padding: 18px 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.5em;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-family: 'Iran Sans', sans-serif;
+  text-decoration: none !important; /* CRITICAL FIX: Ensure no underline */
+}
+.cta-button:hover {
+  background-color: #FFA500;
+  transform: translateY(-3px);
+}
+
+/* --- Section Titles --- */
+section h2 {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #D3D3D3; /* Light gray text for section titles */
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* --- Card Sections Common Styles --- */
+section { /* Base padding and background for all sections */
+  padding: 60px 0;
+  background-color: #0a0a0a; /* Secondary background for sections */
+  text-align: center; /* Center the title */
+}
+
+.featured-shop-section,
+.radio-channels-section { /* Alternate section background color */
+  background-color: #000000;
+}
+
+/* Common wrapper for cards (Episodes, Products, Channels) */
+.episode-cards-wrapper,
+.product-grid,
+.channel-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centering cards */
+  gap: 30px; /* Spacing between cards */
+}
+
+/* Common Card Styling */
+.episode-card,
+.product-card,
+.channel-card {
+  background-color: #1a1a1a; /* Tertiary background for cards */
+  border-radius: 8px;
+  overflow: hidden;
+  width: 280px; /* Fixed width for each card */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  padding-bottom: 20px;
+  transition: transform 0.3s ease;
+  color: #F0F0F0; /* Default text color for card content */
+}
+.episode-card:hover,
+.product-card:hover,
+.channel-card:hover {
+  transform: translateY(-5px);
+}
+
+.episode-card img,
+.product-card img,
+.channel-card img {
+  width: 100%;
+  height: 180px; /* Consistent image height for episodes/channels */
+  object-fit: cover;
+  border-bottom: 2px solid #FFC107; /* Yellow border under image */
+}
+.product-card img { /* Specific height for product images */
+  height: 200px;
+}
+.channel-card img { /* Specific height for channel images */
+  height: 180px;
+}
+
+.episode-card h3,
+.product-card h3,
+.channel-card h3 {
+  font-size: 1.4em;
+  color: #FFC107; /* Dull Yellow for titles */
+  margin: 15px 0 5px;
+  padding: 0 15px;
+}
+
+.product-card h3 { /* Override specific for product h3 */
+  color: #A6E3B8; /* Light Green for product titles */
+}
+
+
+.episode-card p,
+.product-card p,
+.channel-card p {
+  font-size: 1em;
+  color: #B0B0B0; /* Lighter gray for subtitles/descriptions */
+  margin-bottom: 20px;
+  padding: 0 15px;
+}
+
+/* Card Specific Button (Listen, View Product, View Channel) */
+.episode-card button,
+.product-card button,
+.channel-card button {
+  background-color: #A0D8F1; /* Light Blue accent */
+  color: #000000;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  font-family: 'Iran Sans', sans-serif;
+}
+.episode-card button:hover,
+.product-card button:hover,
+.channel-card button:hover {
+  background-color: #80C8E1;
+}
+
+/* --- View All Channels Link --- */
+.channel-view-all {
+  text-align: center;
+  margin-top: 40px;
+}
+/* Removed .channel-view-all a and .channel-view-all a:hover entirely */
+
+
+/* --- Footer --- */
+.main-footer {
+  background-color: #000000; /* Black background */
+  color: #808080; /* Light gray for copyright text */
+  padding: 30px 0;
+  text-align: center;
+  border-top: 1px solid #1a1a1a;
+}
+.main-footer .container { /* Added container for centering footer content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+/* Footer Logo Styling */
+.main-footer .footer-logo img {
+  height: 40px !important; /* Adjusted height with !important */
+  width: auto;
+  margin-bottom: 10px;
+}
+.main-footer .footer-logo a:hover img {
+  transform: scale(1.05);
+}
+
+.main-footer p {
+  margin: 0;
+  font-size: 0.9em;
+}
+
+/* Corrected social-links for footer */
+.social-links { /* Renamed from social-links for broader use */
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.social-links a {
+  color: #FFC107; /* Dull Yellow */
+  text-decoration: none;
+  font-size: 1em;
+  transition: color 0.3s ease;
+  font-family: 'Iran Sans', sans-serif;
+}
+.social-links a:hover {
+  color: #FFA500;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  /* Header Mobile Layout: [Auth Button] [Space] [Logo] [Hamburger] */
+  .main-header .container {
+    flex-wrap: nowrap; /* Prevent wrapping in header */
+    justify-content: space-between; /* Space out primary children */
+    align-items: center;
+    flex-direction: row; /* Set flex-direction to row for mobile header container */
+  }
+
+  /* Specific rule for header-icons to enable flex on mobile */
+  .header-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    order: 1; /* Position to the far left in RTL header */
+    margin-left: auto; /* Pushes it to the far right */
+  }
+
+  /* Ensure direct children of .main-header .container are ordered */
+  .logo {
+    order: 2; /* Logo is visually in the middle */
+    margin-left: 10px; /* Space from button group */
+    margin-right: 0; /* Remove auto margin */
+  }
+
+  /* Hamburger menu and mobile header button display/order are handled by header-icons' flexbox now */
+  .mobile-menu-btn-wrapper { /* Contains Login/Signup Button in mobile nav */
+    display: block; /* Ensure it shows in mobile nav */
+    order: unset; /* Remove order from here as it's now handled by header-icons or specific children */
+    margin-left: auto; /* Re-apply margin-left if needed for spacing, or let header-icons handle */
+  }
+
+  .mobile-header-btn { /* The button itself, inside header-icons */
+    display: none; /* Make sure it's visible */
+    padding: 8px 15px; /* Slightly smaller for mobile header */
+    font-size: 0.9em;
+  }
+
+  .hamburger-menu { /* The hamburger itself, inside header-icons */
+    display: flex; /* Show hamburger */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 25px;
+    height: 20px;
+    /* Order not needed here, as it's handled by header-icons' internal flexbox */
+  }
+
+  .hamburger-menu span {
+    background-color: #FFC107; /* Consistent color */
+    height: 3px;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+  }
+  /* Hamburger active state animation (re-applied as it was in previous code) */
+  .hamburger-menu.active span:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+  .hamburger-menu.active span:nth-child(2) { opacity: 0; }
+  .hamburger-menu.active span:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
+
+
+  .desktop-header-btn {
+    display: none; /* Hide desktop button */
+  }
+  .main-nav {
+    /* Mobile menu itself (off-screen by default) */
+    position: fixed;
+    top: 60px; /* Adjust based on new header height */
+    right: 0;
+    height: calc(100% - 60px); /* Fill remaining height */
+    width: 0; /* Hidden by default */
+    max-width: 0; /* Hidden by default */
+    overflow-x: hidden;
+    background-color: #0a0a0a;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.7);
+    transition: width 0.3s ease-in-out, max-width 0.3s ease-in-out; /* Animate width */
+    z-index: 999;
+    padding: 0; /* No padding when hidden */
+    display: flex; /* Use flex for column layout */
+    flex-direction: column;
+    align-items: flex-end; /* Align links to the right (RTL) */
+  }
+  .main-nav.active {
+    width: 70%; /* Open width */
+    max-width: 250px;
+    padding: 20px; /* Padding when open */
+  }
+  .main-nav ul {
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+  .main-nav ul li a {
+    font-size: 1.1em;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+    display: block; /* Make link clickable across full width */
+  }
+  .main-nav ul li:last-child a {
+    border-bottom: none;
+  }
+
+
+  .hero-content h1 {
+    font-size: 3em;
+  }
+  .hero-content .slogan {
+    font-size: 1.2em;
+  }
+  .cta-button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+  }
+
+  /* Section adjustments */
+  section {
+    padding: 40px 15px;
+  }
+  section h2 {
+    font-size: 2em;
+    margin-bottom: 25px;
+  }
+
+  /* Card adjustments */
+  .episode-card,
+  .product-card,
+  .channel-card {
+    width: 90%; /* Max width for single column on mobile */
+    max-width: 350px;
+    margin: 0 auto; /* Center individual cards */
+    padding: 10px;
+  }
+  .episode-card h3,
+  .product-card h3,
+  .channel-card h3 {
+    font-size: 1.2em;
+  }
+  .episode-card p,
+  .product-card p,
+  .channel-card p {
+    font-size: 0.9em;
+  }
+  .episode-card button,
+  .product-card button,
+  .channel-card button {
+    padding: 8px 15px;
+    font-size: 0.9em;
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
+@media (max-width: 480px) {
+  .main-header {
+    padding: 8px 0;
+  }
+  .logo img {
+    height: 30px;
+  }
+  .mobile-menu-btn-wrapper .auth-button {
+    padding: 6px 12px;
+    font-size: 0.8em;
+  }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  .hero-content h1 {
+    font-size: 2.5em;
+  }
+  .hero-content .slogan {
+    font-size: 1em;
+  }
+  .cta-button {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+  section {
+    padding: 30px 10px;
+  }
+  section h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
   }
 }
