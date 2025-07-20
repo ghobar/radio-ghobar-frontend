@@ -1,117 +1,169 @@
+// src/components/Header.js
+// This component implements the main navigation header of the website.
+// It includes logo, navigation links, dynamic login/profile buttons,
+// and a responsive hamburger menu for mobile.
 'use client';
-import { useEffect, useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
 
-export default function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const router = useRouter();
-  const pathname = usePathname();
+import { useEffect, useState, useRef } from 'react'; // Import useRef for direct DOM interaction
+import Link from 'next/link'; // For client-side navigation
+import Image from 'next/image'; // For optimized image loading
+import { useRouter, usePathname } from 'next/navigation'; // For routing and active links
 
+export default function HeaderComponent() { // Renamed from Header to avoid potential conflicts
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to manage user login status
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State to manage mobile menu open/close
+
+  const router = useRouter(); // Next.js router instance
+  const pathname = usePathname(); // Current path for active link styling
+
+  // Refs for direct DOM access to hamburger button and main navigation
+  const hamburgerRef = useRef(null);
+  const mainNavRef = useRef(null);
+  const headerRef = useRef(null); // Ref for the whole header for click outside detection
+
+  // Effect to manage initial login state from localStorage
   useEffect(() => {
-    // Mock login state for demonstration
     const loggedInStatus = localStorage.getItem('isLoggedIn');
     if (loggedInStatus === 'true') {
       setIsLoggedIn(true);
     }
-    // For testing logged-in state, you can temporarily set:
-    // localStorage.setItem('isLoggedIn', 'true');
+    // For testing logged-in state, uncomment the line below:
+    // localStorage.setItem('isLoggedIn', 'true'); // Temporarily set login state for testing
     // setIsLoggedIn(true); // Uncomment this line to test logged-in state
+  }, []);
 
-    const hamburgerIcon = document.getElementById('hamburger-icon');
-    const mainNav = document.getElementById('main-nav-links');
-
-    const toggleMenu = () => {
-      hamburgerIcon.classList.toggle('active');
-      mainNav.classList.toggle('active');
-      document.body.classList.toggle('no-scroll');
-    };
-
-    const closeMenuOnOutsideClick = (event) => {
-      if (!mainNav.contains(event.target) && !hamburgerIcon.contains(event.target)) {
-        hamburgerIcon.classList.remove('active');
-        mainNav.classList.remove('active');
+  // Function to toggle mobile menu open/close state
+  const toggleMenu = () => {
+    setIsMenuOpen(prev => {
+      const newState = !prev;
+      // Add/remove 'no-scroll' class to body to prevent background scrolling
+      if (newState) {
+        document.body.classList.add('no-scroll');
+        // Add 'active' class to hamburger and main-nav for styling
+        hamburgerRef.current?.classList.add('active');
+        mainNavRef.current?.classList.add('active');
+      } else {
         document.body.classList.remove('no-scroll');
+        // Remove 'active' class
+        hamburgerRef.current?.classList.remove('active');
+        mainNavRef.current?.classList.remove('active');
+      }
+      return newState;
+    });
+  };
+
+  // Function to close mobile menu
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    document.body.classList.remove('no-scroll');
+    hamburgerRef.current?.classList.remove('active');
+    mainNavRef.current?.classList.remove('active');
+  };
+
+  // Effect to handle closing mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // If menu is open and click is outside the header/navbar
+      if (isMenuOpen && headerRef.current && !headerRef.current.contains(event.target)) {
+        closeMenu();
       }
     };
 
-    hamburgerIcon.addEventListener('click', toggleMenu);
-    document.addEventListener('click', closeMenuOnOutsideClick);
+    // Add event listener when component mounts or menu state changes
+    document.addEventListener('mousedown', handleClickOutside);
 
+    // Cleanup: Remove event listener when component unmounts
     return () => {
-      hamburgerIcon.removeEventListener('click', toggleMenu);
-      document.removeEventListener('click', closeMenuOnOutsideClick);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [isMenuOpen]); // Dependency array: re-run effect if isMenuOpen changes
 
-  const handleAuthClick = () => {
+  // Handler for authentication button clicks (Login/Signup/Profile)
+  const handleAuthClick = (event) => {
+    event.preventDefault(); // Prevent default anchor behavior
+    closeMenu(); // Close mobile menu upon navigation
     if (isLoggedIn) {
-      router.push('/profile.html'); // Navigate to profile page
+      router.push('/profile'); // FIX: Removed .html suffix
     } else {
-      router.push('/auth.html'); // Navigate to login/signup page
+      router.push('/login'); // FIX: Removed .html suffix (assuming /login for auth page)
     }
   };
 
+  // Helper function to check if a link is active
+  const isLinkActive = (href) => {
+    // For root path, exact match is needed. For others, startsWith is fine.
+    if (href === '/') {
+        return pathname === '/';
+    }
+    return pathname.startsWith(href);
+  };
+
+
   return (
-    <header className="main-header">
+    <header className="main-header" ref={headerRef}> {/* Attach ref to the main header */}
       <div className="container">
+        {/* Logo Section */}
         <div className="logo">
-          <a href="/">
-            <img src="/assets/images/logo.png" alt="Radyo Ghobar Logo" />
-          </a>
+          <Link href="/" onClick={closeMenu}>
+            <Image src="/assets/images/logo.png" alt="Radyo Ghobar Logo" width={120} height={40} priority />
+          </Link>
         </div>
 
+        {/* Header Icons Section (Mobile-specific: Login/Signup button and Hamburger) */}
         <div className="header-icons">
-          {/* This button is hidden on mobile via CSS in globals.css */}
+          {/* Mobile header Login/Signup/Profile button */}
           <button className="login-signup-btn mobile-header-btn" onClick={handleAuthClick}>
             {isLoggedIn ? 'پروفایل' : 'ورود / ثبت‌نام'}
           </button>
-          <div className="hamburger-menu" id="hamburger-icon">
+          {/* Hamburger Menu Icon */}
+          <div className="hamburger-menu" id="hamburger-icon" ref={hamburgerRef} onClick={toggleMenu}>
             <span></span>
             <span></span>
             <span></span>
           </div>
         </div>
 
-        <nav className="main-nav" id="main-nav-links">
+        {/* Main Navigation Menu (Desktop: always visible, Mobile: slides out) */}
+        <nav className="main-nav" id="main-nav-links" ref={mainNavRef}>
           <ul>
             <li>
-              <a href="/" className={pathname === '/' ? 'active-link' : ''}>
-                خانه
-              </a>
+              <Link href="/" className={isLinkActive('/') ? 'active-link' : ''} onClick={closeMenu}>خانه</Link>
             </li>
             <li>
-              <a href="/episodes.html" className={pathname === '/episodes.html' ? 'active-link' : ''}>
-                اپیزودها
-              </a>
+              <Link href="/episodes" className={isLinkActive('/episodes') ? 'active-link' : ''} onClick={closeMenu}>اپیزودها</Link>
             </li>
             <li>
-              <a href="/shop.html" className={pathname === '/shop.html' ? 'active-link' : ''}>
-                فروشگاه
-              </a>
+              <Link href="/shop" className={isLinkActive('/shop') ? 'active-link' : ''} onClick={closeMenu}>فروشگاه</Link>
             </li>
             <li>
-              <a href="/ghobar_club.html" className={pathname === '/ghobar_club.html' ? 'active-link' : ''}>
-                غبار کلاب
-              </a>
+              <Link href="/ghobar_club" className={isLinkActive('/ghobar_club') ? 'active-link' : ''} onClick={closeMenu}>غبار کلاب</Link>
             </li>
             <li>
-              <a href="/support.html" className={pathname === '/support.html' ? 'active-link' : ''}>
-                حمایت
-              </a>
+              <Link href="/support" className={isLinkActive('/support') ? 'active-link' : ''} onClick={closeMenu}>حمایت</Link>
             </li>
             <li>
-              <a href="/about_us.html" className={pathname === '/about_us.html' ? 'active-link' : ''}>
-                درباره ما
-              </a>
+              <Link href="/about" className={isLinkActive('/about') ? 'active-link' : ''} onClick={closeMenu}>درباره ما</Link>
             </li>
-            <li className="mobile-menu-btn-wrapper">
-              <button className="login-signup-btn mobile-menu-btn" onClick={handleAuthClick}>
-                {isLoggedIn ? 'پروفایل' : 'ورود / ثبت‌نام'}
-              </button>
-            </li>
+
+            {/* Profile link - Appears inside mobile menu if logged in */}
+            {isLoggedIn && (
+              <li className="mobile-menu-item-profile">
+                <Link href="/profile" onClick={closeMenu} className={isLinkActive('/profile') ? 'active-link' : ''}>پروفایل</Link>
+              </li>
+            )}
+
+            {/* Login/Signup button - Appears inside mobile menu if not logged in */}
+            {!isLoggedIn && (
+              <li className="mobile-menu-btn-wrapper">
+                <button className="login-signup-btn mobile-menu-btn" onClick={handleAuthClick}>
+                  ورود/ثبت نام
+                </button>
+              </li>
+            )}
           </ul>
         </nav>
 
+        {/* Desktop Login/Signup/Profile button (only visible on desktop) */}
         <button className="login-signup-btn desktop-header-btn" onClick={handleAuthClick}>
           {isLoggedIn ? 'پروفایل' : 'ورود / ثبت‌نام'}
         </button>

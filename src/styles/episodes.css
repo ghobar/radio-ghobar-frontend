@@ -1,0 +1,586 @@
+/* episodes.css */
+
+/* Important: This file assumes style.css is already linked for general styles like body, header, footer, etc. */
+
+body {
+    direction: rtl; /* Ensure RTL for the whole page if not in style.css */
+}
+
+.episodes-page-main {
+    padding-top: 90px; /* Space for fixed header */
+    padding-bottom: 60px; /* Space for footer and pagination */
+    min-height: calc(100vh - 160px); /* Adjust based on header/footer height */
+}
+
+/* --- Filtering & Sorting Section --- */
+.filters-sort-section {
+    display: flex; /* Default to flex for outer alignment */
+    flex-direction: column; /* Default to column for mobile-first */
+    justify-content: space-between;
+    align-items: center; /* Align items to center when stacked */
+    background-color: #0a0a0a;
+    border-radius: 8px;
+    padding: 20px 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    gap: 20px; /* Gap between major filter groups when stacked */
+}
+
+/* Mobile specific toggle button for filters section */
+.mobile-filter-toggle {
+    display: flex; /* Show by default on mobile */
+    width: 100%;
+    background-color: #1a1a1a;
+    color: #FFC107;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: right; /* RTL */
+    justify-content: space-between; /* Space for arrow */
+    align-items: center;
+    font-family: 'Iran Sans', sans-serif;
+    box-sizing: border-box; /* Include padding in width */
+}
+.mobile-filter-toggle .toggle-arrow {
+    transition: transform 0.3s ease;
+}
+.mobile-filter-toggle .toggle-arrow.open {
+    transform: rotate(180deg); /* Arrow points up when open */
+}
+
+/* Wrapper for filters content that gets toggled on mobile */
+.filters-wrapper {
+    max-height: 0; /* Hidden by default on mobile */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    width: 100%;
+    display: flex; /* Default to flex for mobile */
+    flex-direction: column; /* Default to column for mobile */
+    gap: 15px; /* Gap between stacked filter groups */
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.filters-wrapper.open {
+    max-height: 500px; /* Open state for mobile */
+    padding: 15px 10px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column; /* Default to column for mobile */
+    align-items: flex-end; /* Align contents to the right (RTL) */
+    width: 100%; /* Take full width on mobile */
+    gap: 8px; /* Gap between elements within a group */
+    color: #F0F0F0;
+    font-size: 1.1em;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 193, 7, 0.1);
+}
+.filters-wrapper.open .filter-group:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.filter-group span {
+    font-weight: bold;
+    width: 100%; /* Ensure label takes full width for alignment */
+    text-align: right;
+    margin-bottom: 5px;
+}
+
+.filter-group .filter-btn {
+    width: 100%; /* Make filter buttons full width on mobile */
+    box-sizing: border-box;
+    text-align: right;
+    background-color: #1a1a1a;
+    color: #F0F0F0;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: all 0.3s ease;
+    font-family: 'Iran Sans', sans-serif;
+}
+
+.filter-btn:hover {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: #FFC107;
+    border-color: #FFC107;
+}
+
+.filter-btn.active {
+    background-color: #FFC107;
+    color: #000000;
+    border-color: #FFC107;
+    font-weight: bold;
+}
+
+/* Robust Search Bar & Button Layout */
+.search-filter {
+    flex-direction: column; /* Default to column for mobile */
+    gap: 10px;
+    width: 100%;
+    align-items: stretch;
+}
+
+.search-input {
+    width: 100%;
+    padding: 8px 15px;
+    background-color: #1a1a1a;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    border-radius: 5px;
+    color: #F0F0F0;
+    font-family: 'Iran Sans', sans-serif;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-input::placeholder {
+    color: #808080;
+}
+
+.search-input:focus {
+    border-color: #FFC107;
+    box-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
+    outline: none;
+}
+
+.search-btn {
+    width: 100%;
+    background-color: #A0D8F1;
+    color: #000000;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-family: 'Iran Sans', sans-serif;
+}
+
+.search-btn:hover {
+    background-color: #80C8E1;
+}
+
+/* Sort By Dropdown */
+.sort-by-filter {
+    flex-direction: column; /* Default to column for mobile */
+    align-items: flex-end;
+    width: 100%;
+}
+.sort-by-filter label {
+    margin-bottom: 5px;
+    margin-left: 0;
+    text-align: right;
+    width: 100%;
+}
+
+.sort-by-filter select {
+    width: 100%;
+    padding: 8px 15px;
+    background-color: #1a1a1a;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    border-radius: 5px;
+    color: #F0F0F0;
+    font-family: 'Iran Sans', sans-serif;
+    font-size: 1em;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFC107'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    background-size: 18px;
+    padding-left: 30px;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.sort-by-filter select:focus {
+    border-color: #FFC107;
+    outline: none;
+}
+
+
+/* --- Episodes Grid Layout (Now with prominent container styling) --- */
+.episodes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px; /* Keep consistent gap between cards */
+    margin-bottom: 50px;
+
+    /* CRITICAL FIX: Re-added background, border-radius, box-shadow for visual distinction */
+    background-color: #0a0a0a; /* Darker background for the container itself */
+    border-radius: 8px; /* Rounded corners for the container */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for the container */
+
+    /* CRITICAL FIX: Adjusted padding for the container to give space around cards */
+    padding: 25px; /* Ample padding around the grid content on desktop */
+
+    min-height: 200px; /* Ensure grid has some height for messages */
+    justify-items: center; /* Center cards in the grid cells */
+}
+
+/* Status Message (Loading/Error) */
+.episodes-grid .status-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #F0F0F0;
+    padding: 20px;
+    display: block;
+}
+
+.episodes-grid .status-message.error {
+    color: #FFA500;
+}
+
+
+.episode-card {
+    background-color: #0a0a0a;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 350px; /* Adjusted max-width for consistency */
+}
+
+.episode-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(255, 193, 7, 0.2);
+}
+
+/* Optimized Image Display Fix */
+.episode-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    background-color: #000;
+    border-bottom: 2px solid #FFC107;
+}
+
+.episode-card .card-details {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.episode-card .episode-title {
+    font-size: 1.4em;
+    color: #FFC107;
+    margin-top: 0;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+/* New wrapper for meta info */
+.episode-card .card-details .episode-meta-info {
+    flex-grow: 1;
+    margin-bottom: 15px;
+}
+
+.episode-card .episode-meta-info p {
+    font-size: 0.95em;
+    color: #B0B0B0;
+    margin-bottom: 5px;
+}
+
+/* Uniform Bottom Alignment for Episode Cards - KEPT THESE STYLES */
+.episode-card .listen-button {
+    background-color: #A0D8F1;
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: auto;
+    align-self: center;
+    display: block;
+    width: fit-content;
+}
+
+.episode-card .listen-button:hover {
+    background-color: #80C8E1;
+}
+
+/* --- Pagination --- */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #0a0a0a;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pagination .page-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #1a1a1a;
+    color: #F0F0F0;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.pagination .page-link:hover {
+    background-color: #FFC107;
+    color: #000000;
+}
+
+.pagination .page-link.active {
+    background-color: #FFC107;
+    color: #000000;
+    cursor: default;
+}
+
+.pagination span {
+    color: #808080;
+    font-size: 1.2em;
+}
+
+/* --- Responsive Adjustments --- */
+/* Desktop styles start from 769px */
+@media (min-width: 769px) {
+    .mobile-filter-toggle {
+        display: none;
+    }
+
+    .filters-sort-section {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+        padding: 20px 30px;
+        gap: 0;
+    }
+
+    .filters-wrapper {
+        max-height: none;
+        overflow: visible;
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        gap: 15px 30px;
+        width: 100%;
+    }
+
+    .filter-group.category-filters {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        width: auto;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+
+    .filter-group.search-filter {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+        flex-wrap: nowrap;
+        width: auto;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+
+    .filter-group.sort-by-filter {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        flex-wrap: nowrap;
+        width: auto;
+        padding-bottom: 0;
+        border-bottom: none;
+        margin-top: 0;
+    }
+
+    .filter-group span {
+        width: auto;
+        text-align: right;
+        margin-bottom: 0;
+    }
+    .filter-group .filter-btn {
+        width: auto;
+        text-align: center;
+    }
+    .search-input {
+        flex-grow: 1;
+        max-width: 250px;
+    }
+    .search-btn {
+        min-width: 80px;
+    }
+    .sort-by-filter label {
+        margin-left: 0;
+        margin-bottom: 0;
+        width: auto;
+        text-align: right;
+    }
+    .sort-by-filter select {
+        width: auto;
+    }
+
+    .episodes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        padding: 25px; /* Consistent padding for desktop */
+        gap: 30px;
+    }
+
+    .episode-card {
+        max-width: 280px;
+    }
+    .episode-card img {
+        height: 150px;
+    }
+    .episode-card .listen-button {
+        align-self: center;
+    }
+}
+
+/* Tablet specific adjustments (769px to 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .filters-sort-section {
+        padding: 15px 20px;
+    }
+    .filters-wrapper {
+        gap: 10px 20px;
+    }
+    .episodes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+        padding: 20px; /* Slightly reduced padding for tablets */
+    }
+    .episode-card {
+        max-width: 250px;
+    }
+}
+
+
+/* Mobile specific adjustments (max-width: 768px) */
+@media (max-width: 768px) {
+    .filters-sort-section {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .mobile-filter-toggle {
+        display: flex;
+    }
+    .filters-wrapper {
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .filters-wrapper.open {
+        max-height: 500px;
+        padding: 15px 10px;
+    }
+
+    .filter-group {
+        flex-direction: column;
+        align-items: flex-end;
+        width: 100%;
+        gap: 8px;
+    }
+    .filter-group span {
+        width: 100%;
+        text-align: right;
+    }
+    .filter-btn,
+    .search-input,
+    .search-btn,
+    .sort-by-filter select {
+        width: 100%;
+        font-size: 0.9em;
+    }
+    .search-filter {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .episodes-grid {
+        grid-template-columns: 1fr;
+        /* CRITICAL FIX: Adjusted padding for mobile grid container */
+        padding: 15px; /* Ample padding for mobile grid */
+        gap: 25px;
+    }
+
+    .episode-card {
+        max-width: 350px;
+        margin: 0 auto;
+    }
+    .episode-card img {
+        height: 200px;
+    }
+
+    .pagination {
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .pagination .page-link {
+        width: 35px;
+        height: 35px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .filters-sort-section {
+        padding: 10px;
+    }
+
+    .episode-card .episode-title {
+        font-size: 1.2em;
+    }
+
+    .episode-card p {
+        font-size: 0.85em;
+    }
+
+    .episode-card img {
+        height: 180px;
+    }
+}

@@ -40,6 +40,77 @@ body {
 body.no-scroll {
   overflow: hidden;
 }
+/* --- Navbar Styles --- */
+.main-navbar {
+  background-color: #0a0a0a; /* Darker background for navbar */
+  padding: 15px 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  position: fixed; /* Fix navbar to top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure navbar is on top */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px; /* Max width for content inside navbar */
+  margin: 0 auto; /* Center the content */
+}
+
+.navbar-logo {
+  color: #FFC107; /* Gold color for logo/site name */
+  font-size: 1.8em;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.navbar-logo:hover {
+  color: #FFE082; /* Lighter gold on hover */
+}
+
+.navbar-links {
+  list-style: none; /* Remove bullet points */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 25px; /* Space between links */
+}
+
+.navbar-link {
+  color: #f0f0f0;
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: 500;
+  padding: 5px 0;
+  transition: color 0.2s ease, border-bottom 0.2s ease;
+  white-space: nowrap; /* Prevent links from wrapping */
+}
+
+.navbar-link:hover {
+  color: #FFC107;
+  border-bottom: 2px solid #FFC107;
+}
+
+/* Mobile adjustments for Navbar (optional, but good practice) */
+@media (max-width: 768px) {
+  .main-navbar {
+    padding: 10px 15px;
+  }
+  .navbar-logo {
+    font-size: 1.5em;
+  }
+  .navbar-links {
+    gap: 15px;
+  }
+  .navbar-link {
+    font-size: 1em;
+  }
+}
 
 /* Container for Centering Content */
 .container {
@@ -272,15 +343,15 @@ section { /* Base padding and background for all sections */
 .episode-card,
 .product-card,
 .channel-card {
-  background-color: #1a1a1a; /* Tertiary background for cards */
+  background-color: #1a1a1a;
   border-radius: 8px;
   overflow: hidden;
-  width: 280px; /* Fixed width for each card */
+  width: 280px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
   text-align: center;
-  padding-bottom: 20px;
-  transition: transform 0.3s ease;
-  color: #F0F0F0; /* Default text color for card content */
+  /* Adjustments for button alignment below */
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
 }
 .episode-card:hover,
 .product-card:hover,
@@ -295,6 +366,7 @@ section { /* Base padding and background for all sections */
   height: 180px; /* Consistent image height for episodes/channels */
   object-fit: cover;
   border-bottom: 2px solid #FFC107; /* Yellow border under image */
+  margin-bottom: 15px; /* Spacing from card-details */
 }
 .product-card img { /* Specific height for product images */
   height: 200px;
@@ -303,13 +375,26 @@ section { /* Base padding and background for all sections */
   height: 180px;
 }
 
+/* New: Card details wrapper for consistent height and text alignment */
+.episode-card .card-details,
+.product-card .card-details,
+.channel-card .card-details {
+    padding: 0 15px 20px; /* Adjust padding here, including new padding-bottom */
+    flex-grow: 1; /* Allow content to take available vertical space */
+    display: flex; /* Make details itself a flex container */
+    flex-direction: column; /* Stack title and paragraph */
+    justify-content: flex-start; /* Align text to top of details area */
+}
+
 .episode-card h3,
 .product-card h3,
 .channel-card h3 {
   font-size: 1.4em;
   color: #FFC107; /* Dull Yellow for titles */
-  margin: 15px 0 5px;
-  padding: 0 15px;
+  margin: 0; /* Ensure no top margin */
+  margin-bottom: 5px; /* Consistent spacing */
+  padding: 0 15px; /* Keep original horizontal padding */
+  line-height: 1.4; /* Ensure consistent line height */
 }
 
 .product-card h3 { /* Override specific for product h3 */
@@ -322,8 +407,11 @@ section { /* Base padding and background for all sections */
 .channel-card p {
   font-size: 1em;
   color: #B0B0B0; /* Lighter gray for subtitles/descriptions */
-  margin-bottom: 20px;
-  padding: 0 15px;
+  margin: 0; /* Ensure no top margin */
+  margin-bottom: 15px; /* Consistent margin bottom for paragraph */
+  padding: 0 15px; /* Keep original horizontal padding */
+  line-height: 1.5; /* Ensure consistent line height */
+  flex-grow: 1; /* Allow paragraph to take remaining vertical space within card-details */
 }
 
 /* Card Specific Button (Listen, View Product, View Channel) */
@@ -340,6 +428,9 @@ section { /* Base padding and background for all sections */
   font-weight: bold;
   transition: background-color 0.3s ease;
   font-family: 'Iran Sans', sans-serif;
+  margin-top: auto; /* Push button to the bottom of the card */
+  align-self: center; /* Center the button horizontally within the card */
+  margin-bottom: 20px; /* NEW: Add margin-bottom for spacing from card edge */
 }
 .episode-card button:hover,
 .product-card button:hover,
@@ -438,7 +529,7 @@ section { /* Base padding and background for all sections */
   }
 
   .mobile-header-btn { /* The button itself, inside header-icons */
-    display: none; /* Make sure it's visible */
+    display: none; /* THIS IS THE FIX! */
     padding: 8px 15px; /* Slightly smaller for mobile header */
     font-size: 0.9em;
   }

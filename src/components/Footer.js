@@ -1,18 +1,26 @@
-export default function Footer() {
+// src/components/Footer.js
+// This component renders the main footer section of the website.
+'use client'; // Required for client-side interactions if any, or for hooks
+
+import React from 'react';
+import Link from 'next/link'; // For client-side navigation
+import Image from 'next/image'; // For optimized image loading
+
+export default function FooterComponent() { // Renamed from Footer for clarity
   return (
     <footer className="main-footer">
       <div className="container">
         <div className="footer-logo">
-          <a href="/">
-            <img src="/assets/images/logo.png" alt="Logo" />
-          </a>
+          <Link href="/">
+            <Image src="/assets/images/logo.png" alt="Radyo Ghobar Logo" width={100} height={40} /> {/* Adjust width/height as needed */}
+          </Link>
         </div>
         <p>&copy; 2025 رادیو غبار. تمامی حقوق محفوظ است.</p>
         <div className="social-links">
-          <a href="#">فیسبوک</a>
-          <a href="#">توییتر</a>
-          <a href="#">اینستاگرام</a>
-          <a href="/terms.html">شرایط و ضوابط</a>
+          <Link href="#">فیسبوک</Link>
+          <Link href="#">توییتر</Link>
+          <Link href="#">اینستاگرام</Link>
+          <Link href="/terms">شرایط و ضوابط</Link> {/* FIX: Removed .html suffix */}
         </div>
       </div>
     </footer>

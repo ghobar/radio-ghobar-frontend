@@ -1,4 +1,6 @@
-// page.js
+// src/app/page.js
+'use client';
+
 import HeroSection from "@/components/HeroSection";
 import LatestEpisodesSection from "@/components/LatestEpisodesSection";
 import FeaturedShopSection from "@/components/FeaturedShopSection";
