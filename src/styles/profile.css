@@ -1,0 +1,479 @@
+/* src/styles/profile.css */
+
+/* Important: This file assumes style.css is already linked for general styles like body, header, footer, etc. */
+
+/* Main layout for the profile page */
+.profile-page-main {
+    padding-top: 90px; /* Space for fixed header */
+    padding-bottom: 40px; /* Space for footer */
+    min-height: calc(100vh - 160px); /* Adjust based on header/footer height */
+}
+
+.profile-layout {
+    display: flex;
+    gap: 30px; /* Space between sidebar and content */
+    align-items: flex-start; /* Align items to the top */
+}
+
+/* Profile Sidebar */
+.profile-sidebar {
+    flex: 0 0 250px; /* Fixed width for sidebar */
+    background-color: #0a0a0a; /* Slightly lighter dark background */
+    border-radius: 8px;
+    padding: 20px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.profile-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-nav ul li a {
+    display: block;
+    padding: 15px 25px;
+    color: #F0F0F0;
+    text-decoration: none;
+    font-size: 1.1em;
+    border-right: 4px solid transparent; /* Accent border for active state */
+    transition: all 0.3s ease;
+}
+
+.profile-nav ul li a:hover {
+    background-color: rgba(255, 193, 7, 0.05); /* Very subtle yellow background on hover */
+    color: #FFC107;
+}
+
+.profile-nav ul li a.active {
+    background-color: rgba(255, 193, 7, 0.1); /* Active background */
+    color: #FFC107; /* Dull Yellow for active link */
+    font-weight: bold;
+    border-right-color: #FFC107; /* Dull Yellow border */
+}
+
+/* Profile Main Content Area */
+.profile-content {
+    flex-grow: 1; /* Takes remaining space */
+    background-color: #0a0a0a;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Profile Header/Banner */
+.profile-header-banner {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 193, 7, 0.2); /* Subtle separator */
+}
+
+.profile-avatar-container {
+    position: relative;
+    width: 150px; /* Matches placeholder size */
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0; /* Prevent shrinking */
+    border: 3px solid #FFC107; /* Yellow border for avatar */
+}
+
+.profile-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.upload-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFC107;
+    font-size: 3em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.profile-avatar-container:hover .upload-overlay {
+    opacity: 1;
+}
+
+.profile-info {
+    flex-grow: 1;
+}
+
+.profile-info h2.profile-username {
+    font-size: 2.2em;
+    color: #FFC107;
+    margin-bottom: 5px;
+}
+
+.profile-info p.profile-name {
+    font-size: 1.3em;
+    color: #D3D3D3;
+    margin-bottom: 10px;
+}
+
+.profile-info p.profile-bio-short {
+    font-size: 1.1em;
+    color: #B0B0B0;
+    margin-bottom: 15px;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 20px;
+    color: #808080;
+    font-size: 0.95em;
+    margin-bottom: 20px;
+}
+
+/* General CTA button style - re-used from homepage style.css */
+.edit-profile-btn {
+    background-color: #FFC107;
+    color: #000000;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.edit-profile-btn:hover {
+    background-color: #FFA500;
+}
+
+/* Profile Main Content Sections */
+.profile-section {
+    background-color: #1a1a1a; /* Darker background for each section */
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: none; /* Hidden by default, shown by JS */
+}
+
+.profile-section.active-section {
+    display: block; /* Only active section is visible */
+}
+
+.profile-section h3 {
+    font-size: 2em;
+    color: #FFC107;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+    padding-bottom: 10px;
+}
+
+/* View Profile Section */
+.info-item {
+    display: flex;
+    justify-content: space-between; /* Space out label and value */
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(240, 240, 240, 0.1);
+    font-size: 1.1em;
+}
+
+.info-item:last-of-type {
+    border-bottom: none;
+}
+
+.info-item span:first-child {
+    font-weight: bold;
+    color: #D3D3D3;
+    flex-basis: 30%; /* Give labels some width */
+}
+
+.info-item span:last-child,
+.info-item p {
+    color: #B0B0B0;
+    flex-basis: 65%; /* Give values more width */
+    text-align: left; /* Align values to the left (for RTL context) */
+}
+
+.info-item.bio-item {
+    flex-direction: column; /* Bio text spans full width below label */
+}
+
+.info-item.bio-item p {
+    margin-top: 10px;
+    text-align: justify; /* Justify long bio text */
+    flex-basis: auto;
+}
+
+
+/* Loyalty Points Section */
+.loyalty-info {
+    text-align: center;
+}
+
+.current-points {
+    font-size: 2.5em;
+    color: #A6E3B8; /* Light Green for points */
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.points-value {
+    color: #FFC107; /* Highlight points value with yellow */
+}
+
+.points-earn-text {
+    font-size: 1.1em;
+    color: #B0B0B0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Settings Section */
+.setting-block {
+    background-color: #000000; /* Even darker background for setting blocks */
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 0 10px rgba(255, 193, 7, 0.05); /* Subtle inner glow */
+}
+
+.setting-block h4 {
+    font-size: 1.6em;
+    color: #D6BCFA; /* Light Purple for setting titles */
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(214, 188, 250, 0.2);
+    padding-bottom: 10px;
+}
+
+.setting-form .form-group {
+    margin-bottom: 15px;
+}
+
+.setting-form label {
+    display: block;
+    font-size: 1em;
+    color: #F0F0F0;
+    margin-bottom: 8px;
+    font-weight: normal;
+}
+
+.setting-form input[type="password"],
+.setting-form input[type="tel"] {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #1a1a1a; /* Dark input background */
+    border: 1px solid rgba(255, 193, 7, 0.3); /* Yellow border */
+    border-radius: 5px;
+    color: #F0F0F0;
+    font-family: 'Iran Sans', sans-serif;
+    font-size: 1em;
+    box-sizing: border-box; /* Include padding in width */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.setting-form input[type="password"]:focus,
+.setting-form input[type="tel"]:focus {
+    border-color: #FFC107;
+    box-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+    outline: none;
+}
+
+.setting-form .submit-btn {
+    margin-top: 15px;
+    padding: 12px 30px;
+    font-size: 1.1em;
+}
+
+/* Placeholder sections styling */
+.profile-section p {
+    color: #B0B0B0;
+    font-size: 1.1em;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* --- Responsive Adjustments for Profile Page --- */
+@media (max-width: 768px) {
+    .profile-layout {
+        flex-direction: column; /* Stack sidebar above content */
+        gap: 20px;
+    }
+
+    .profile-sidebar {
+        flex: none; /* Remove fixed width */
+        width: 100%; /* Take full width */
+        padding: 15px 0;
+        margin-bottom: 20px; /* Space below sidebar */
+    }
+
+    .profile-nav ul {
+        display: flex; /* Make sidebar links horizontal for mobile */
+        flex-wrap: wrap; /* Allow wrapping */
+        justify-content: center; /* Center links */
+        gap: 10px; /* Space between horizontal links */
+        padding: 0 10px;
+    }
+
+    .profile-nav ul li a {
+        padding: 10px 15px;
+        font-size: 0.95em;
+        border-right: none; /* Remove vertical border */
+        border-bottom: 2px solid transparent; /* Use bottom border for active */
+        text-align: center;
+    }
+
+    .profile-nav ul li a.active {
+        border-right-color: transparent;
+        border-bottom-color: #FFC107; /* Active bottom border */
+    }
+
+    .profile-content {
+        padding: 20px;
+    }
+
+    .profile-header-banner {
+        flex-direction: column; /* Stack avatar above info */
+        text-align: center;
+        gap: 20px;
+        padding-bottom: 20px;
+    }
+
+    .profile-avatar-container {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-info h2.profile-username {
+        font-size: 2em;
+    }
+
+    .profile-info p.profile-name {
+        font-size: 1.1em;
+    }
+
+    .profile-info p.profile-bio-short {
+        font-size: 1em;
+    }
+
+    .profile-stats {
+        justify-content: center; /* Center stats */
+        font-size: 0.9em;
+    }
+
+    .edit-profile-btn {
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .profile-section h3 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    .info-item {
+        flex-direction: column; /* Stack label and value vertically */
+        align-items: flex-start;
+        text-align: right; /* Revert label/value alignment for mobile stack */
+        padding: 8px 0;
+    }
+    .info-item span:first-child,
+    .info-item span:last-child,
+    .info-item p {
+        flex-basis: auto; /* Remove fixed basis */
+        width: 100%;
+        text-align: right;
+    }
+    .info-item span:first-child {
+        margin-bottom: 5px;
+    }
+    .info-item.bio-item p {
+        text-align: right; /* Ensure bio text aligns right on mobile */
+    }
+
+    .current-points {
+        font-size: 2em;
+    }
+
+    .points-earn-text {
+        font-size: 1em;
+    }
+
+    .setting-block h4 {
+        font-size: 1.4em;
+    }
+
+    .setting-form input {
+        font-size: 0.95em;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-page-main {
+        padding-top: 80px; /* Smaller padding for very small screens */
+    }
+
+    .profile-content {
+        padding: 15px;
+    }
+
+    .profile-sidebar {
+        border-radius: 0; /* No border-radius on very small screens if it spans full width */
+    }
+
+    .profile-nav ul {
+        gap: 8px;
+    }
+
+    .profile-nav ul li a {
+        font-size: 0.85em;
+        padding: 8px 12px;
+    }
+
+    .profile-header-banner {
+        gap: 15px;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+    }
+
+    .profile-avatar-container {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-info h2.profile-username {
+        font-size: 1.8em;
+    }
+
+    .profile-info p.profile-name {
+        font-size: 1em;
+    }
+
+    .profile-info p.profile-bio-short {
+        font-size: 0.9em;
+    }
+
+    .profile-stats {
+        flex-direction: column; /* Stack stats vertically on very small screens */
+        gap: 5px;
+        font-size: 0.85em;
+    }
+
+    .profile-section h3 {
+        font-size: 1.6em;
+        margin-bottom: 15px;
+    }
+
+    .setting-block h4 {
+        font-size: 1.2em;
+    }
+}
