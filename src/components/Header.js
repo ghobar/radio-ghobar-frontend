@@ -127,7 +127,7 @@ export default function HeaderComponent() {
               <Link href="/support" className={isLinkActive('/support') ? 'active-link' : ''} onClick={closeMenu}>حمایت</Link>
             </li>
             <li>
-              <Link href="/about" className={isLinkActive('/about') ? 'active-link' : ''} onClick={closeMenu}>درباره ما</Link>
+              <Link href="/about-us" className={isLinkActive('/about-us') ? 'active-link' : ''} onClick={closeMenu}>درباره ما</Link>
             </li>
 
             {/* REMOVED: The separate 'پروفایل' li element.

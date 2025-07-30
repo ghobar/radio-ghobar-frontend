@@ -99,7 +99,7 @@ export default function Navbar() {
             <li><Link href="/shop" className={pathname === '/shop' ? 'active-link' : ''} onClick={closeMenu}>فروشگاه</Link></li>
             <li><Link href="/ghobar-club" className={pathname === '/ghobar-club' ? 'active-link' : ''} onClick={closeMenu}>غبار کلاب</Link></li>
             <li><Link href="/support" className={pathname === '/support' ? 'active-link' : ''} onClick={closeMenu}>حمایت</Link></li>
-            <li><Link href="/about" className={pathname === '/about' ? 'active-link' : ''} onClick={closeMenu}>درباره ما</Link></li>
+            <li><Link href="/about-us" className={pathname === '/about-us' ? 'active-link' : ''} onClick={closeMenu}>درباره ما</Link></li>
 
             {/* Profile link - Appears inside mobile menu if logged in */}
             {isLoggedIn && (
