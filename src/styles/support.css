@@ -1,0 +1,488 @@
+/* src/styles/support.css */
+
+/* Important: This file assumes style.css is already linked for general styles like body, header, footer, etc. */
+
+.support-page-main {
+    padding-top: 90px; /* Space for fixed header */
+    padding-bottom: 60px; /* Space for footer */
+    min-height: calc(100vh - 160px); /* Adjust based on header/footer height */
+}
+
+.page-title {
+    font-size: 3em;
+    color: #FFC107; /* Dull Yellow for main title */
+    text-align: center;
+    margin-bottom: 40px;
+    padding-top: 20px;
+    font-weight: bold;
+}
+
+/* --- Encouragement Section --- */
+.encouragement-section {
+    background-color: #0a0a0a;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: justify; /* Justify text for readability */
+    color: #F0F0F0;
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+.encouragement-section p {
+    margin-bottom: 1em;
+}
+
+.encouragement-section p:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Section Subtitles (for Donation, Top Supporters, FAQ) --- */
+.section-subtitle {
+    font-size: 2em;
+    color: #D3D3D3; /* Light gray for section titles */
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+
+/* --- Donation Options Section --- */
+.donation-options {
+    background-color: #0a0a0a;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.preset-amounts {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow buttons to wrap */
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.amount-btn {
+    background-color: #1a1a1a; /* Dark button background */
+    color: #F0F0F0;
+    border: 1px solid rgba(255, 193, 7, 0.3); /* Subtle yellow border */
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-family: 'Iran Sans', sans-serif;
+}
+
+.amount-btn:hover {
+    background-color: rgba(255, 193, 7, 0.1); /* Subtle yellow highlight */
+    color: #FFC107;
+    border-color: #FFC107;
+}
+
+.amount-btn.active {
+    background-color: #FFC107; /* Dull Yellow active background */
+    color: #000000; /* Black text */
+    border-color: #FFC107;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+}
+
+.custom-amount-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+#custom-amount {
+    width: 200px;
+    padding: 12px 15px;
+    background-color: #1a1a1a;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    border-radius: 8px;
+    color: #F0F0F0;
+    font-family: 'Iran Sans', sans-serif;
+    font-size: 1.1em;
+    text-align: center;
+    -moz-appearance: textfield; /* Hide default arrow buttons for Firefox */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#custom-amount::-webkit-outer-spin-button,
+#custom-amount::-webkit-inner-spin-button {
+    -webkit-appearance: none; /* Hide default arrow buttons for Chrome, Safari, Edge */
+    margin: 0;
+}
+
+#custom-amount::placeholder {
+    color: #808080;
+}
+
+#custom-amount:focus {
+    border-color: #FFC107;
+    box-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+    outline: none;
+}
+
+.currency-label {
+    color: #F0F0F0;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.support-btn { /* Reuses .cta-button from style.css */
+    background-color: #FFC107;
+    color: #000000;
+    padding: 15px 40px;
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.support-btn:hover {
+    background-color: #FFA500;
+    transform: translateY(-2px);
+}
+
+.payment-methods {
+    color: #B0B0B0;
+    font-size: 0.95em;
+}
+
+/* --- Top Supporters Section --- */
+.top-supporters-section {
+    background-color: #0a0a0a;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.supporters-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 500px; /* Limit width for list items */
+}
+
+.supporters-list li {
+    background-color: #1a1a1a;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #F0F0F0;
+    font-size: 1em;
+    display: flex;
+    justify-content: space-between; /* Space out name and amount */
+    align-items: center;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.supporters-list li:last-child {
+    margin-bottom: 0;
+}
+
+.supporters-list li .donation-amount {
+    font-weight: bold;
+    color: #A6E3B8; /* Light Green for donation amount */
+}
+
+/* --- Support FAQ Section --- */
+.support-faq-section {
+    background-color: #0a0a0a;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.faq-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.faq-item {
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    overflow: hidden; /* Hide overflow for collapsing answer */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.faq-question {
+    background-color: #2a2a2a; /* Slightly lighter background for question */
+    color: #FFC107; /* Yellow for question text */
+    border: none;
+    padding: 18px 25px;
+    width: 100%;
+    text-align: right; /* Align text to the right */
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between; /* Space for arrow */
+    align-items: center;
+    font-family: 'Iran Sans', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: #3a3a3a;
+}
+
+.faq-question::after {
+    content: '\025BC'; /* Unicode for down arrow */
+    font-size: 1.2em;
+    color: #FFC107;
+    transition: transform 0.3s ease;
+    margin-right: 10px; /* Space from text */
+}
+
+.faq-question.active::after {
+    transform: rotate(-180deg); /* Rotate up arrow when active */
+}
+
+.faq-answer {
+    padding: 0 25px;
+    background-color: #1a1a1a;
+    max-height: 0; /* Hidden by default */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.faq-answer p {
+    color: #B0B0B0;
+    font-size: 1em;
+    line-height: 1.6;
+    padding: 15px 0; /* Padding inside the answer */
+    margin: 0; /* Remove default paragraph margin */
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1024px) {
+    .page-title {
+        font-size: 2.5em;
+    }
+
+    .encouragement-section,
+    .donation-options,
+    .top-supporters-section,
+    .support-faq-section {
+        padding: 25px;
+        margin-bottom: 40px;
+    }
+
+    .section-subtitle {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+
+    .preset-amounts {
+        gap: 10px;
+    }
+    .amount-btn {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    #custom-amount {
+        width: 180px;
+        font-size: 1em;
+    }
+
+    .support-btn {
+        padding: 12px 30px;
+        font-size: 1.1em;
+    }
+
+    .faq-question {
+        padding: 15px 20px;
+        font-size: 1em;
+    }
+    .faq-answer {
+        padding: 0 20px;
+    }
+    .faq-answer p {
+        padding: 10px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2.2em;
+        margin-bottom: 30px;
+    }
+
+    .encouragement-section,
+    .donation-options,
+    .top-supporters-section,
+    .support-faq-section {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .section-subtitle {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+    }
+
+    .preset-amounts {
+        flex-direction: column; /* Stack amount buttons vertically */
+        align-items: center;
+        gap: 10px;
+    }
+    .amount-btn {
+        width: 100%;
+        max-width: 250px; /* Limit width of stacked buttons */
+        padding: 10px 20px;
+        font-size: 0.95em;
+    }
+
+    .custom-amount-group {
+        flex-direction: column; /* Stack input and currency label */
+        gap: 5px;
+    }
+    #custom-amount {
+        width: 100%;
+        max-width: 250px;
+        font-size: 0.95em;
+    }
+    .currency-label {
+        font-size: 0.95em;
+    }
+
+    .support-btn {
+        width: 100%;
+        max-width: 250px;
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+
+    .supporters-list li {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+
+    .faq-question {
+        padding: 12px 18px;
+        font-size: 0.9em;
+    }
+    .faq-answer {
+        padding: 0 18px;
+    }
+    .faq-answer p {
+        padding: 8px 0;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 1.8em;
+    }
+
+    .encouragement-section {
+        font-size: 1em;
+        line-height: 1.7;
+        padding: 15px;
+    }
+
+    .section-subtitle {
+        font-size: 1.4em;
+        margin-bottom: 15px;
+    }
+
+    .donation-options,
+    .top-supporters-section,
+    .support-faq-section {
+        padding: 15px;
+        margin-bottom: 25px;
+    }
+
+    .supporters-list li {
+        font-size: 0.85em;
+    }
+}
+/* --- Support FAQ Section --- */
+.support-faq-section {
+    background-color: #0a0a0a;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.faq-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.faq-item {
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    overflow: hidden; /* This is crucial for the maxHeight transition to work */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.faq-question {
+    background-color: #2a2a2a;
+    color: #FFC107;
+    border: none;
+    padding: 18px 25px;
+    width: 100%;
+    text-align: right;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Iran Sans', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: #3a3a3a;
+}
+
+.faq-question::after {
+    content: '\025BC';
+    font-size: 1.2em;
+    color: #FFC107;
+    transition: transform 0.3s ease;
+    margin-right: 10px;
+}
+
+.faq-question.active::after {
+    transform: rotate(-180deg);
+}
+
+.faq-answer {
+    padding: 0 25px;
+    background-color: #1a1a1a;
+    max-height: 0; /* Hidden by default with max-height 0 */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+}
+/* This is the key part: when 'active' class is added, max-height expands. */
+.faq-answer.active {
+    max-height: 200px; /* A large enough value to accommodate all answers */
+    padding: 15px 25px;
+}
+
+.faq-answer p {
+    color: #B0B0B0;
+    font-size: 1em;
+    line-height: 1.6;
+    margin: 0;
+}
