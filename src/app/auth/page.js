@@ -4,6 +4,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link'; // CRITICAL FIX: Import Link
 import { useRouter } from 'next/navigation';
+import '../../styles/auth.css';
 
 export default function AuthPage() {
   const [activeTab, setActiveTab] = useState('login');

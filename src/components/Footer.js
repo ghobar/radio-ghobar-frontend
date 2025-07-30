@@ -5,6 +5,7 @@
 import React from 'react';
 import Link from 'next/link'; // For client-side navigation
 import Image from 'next/image'; // For optimized image loading
+import '../styles/footer.css';
 
 export default function FooterComponent() { // Renamed from Footer for clarity
   return (

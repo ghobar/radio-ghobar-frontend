@@ -1,0 +1,49 @@
+/* src/styles/footer.css */
+
+/* --- Footer --- */
+.main-footer {
+  background-color: #000000; /* Black background */
+  color: #808080; /* Light gray for copyright text */
+  padding: 30px 0;
+  text-align: center;
+  border-top: 1px solid #1a1a1a;
+}
+.main-footer .container { /* Added container for centering footer content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+/* Footer Logo Styling */
+.main-footer .footer-logo img {
+  height: 40px !important; /* Adjusted height with !important */
+  width: auto;
+  margin-bottom: 10px;
+}
+.main-footer .footer-logo a:hover img {
+  transform: scale(1.05);
+}
+
+.main-footer p {
+  margin: 0;
+  font-size: 0.9em;
+}
+
+/* Corrected social-links for footer */
+.social-links { /* Renamed from social-links for broader use */
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.social-links a {
+  color: #FFC107; /* Dull Yellow */
+  text-decoration: none;
+  font-size: 1em;
+  transition: color 0.3s ease;
+  font-family: 'Iran Sans', sans-serif;
+}
+.social-links a:hover {
+  color: #FFA500;
+}

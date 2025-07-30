@@ -8,6 +8,7 @@ import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
+import '../styles/header.css';
 
 export default function HeaderComponent() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

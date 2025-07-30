@@ -1,0 +1,309 @@
+/* src/styles/header.css */
+
+/* --- Navbar Styles --- */
+.main-navbar {
+  background-color: #0a0a0a; /* Darker background for navbar */
+  padding: 15px 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  position: fixed; /* Fix navbar to top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure navbar is on top */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px; /* Max width for content inside navbar */
+  margin: 0 auto; /* Center the content */
+}
+
+.navbar-logo {
+  color: #FFC107; /* Gold color for logo/site name */
+  font-size: 1.8em;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.navbar-logo:hover {
+  color: #FFE082; /* Lighter gold on hover */
+}
+
+.navbar-links {
+  list-style: none; /* Remove bullet points */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 25px; /* Space between links */
+}
+
+.navbar-link {
+  color: #f0f0f0;
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: 500;
+  padding: 5px 0;
+  transition: color 0.2s ease, border-bottom 0.2s ease;
+  white-space: nowrap; /* Prevent links from wrapping */
+}
+
+.navbar-link:hover {
+  color: #FFC107;
+  border-bottom: 2px solid #FFC107;
+}
+
+/* Mobile adjustments for Navbar (optional, but good practice) */
+@media (max-width: 768px) {
+  .main-navbar {
+    padding: 10px 15px;
+  }
+  .navbar-logo {
+    font-size: 1.5em;
+  }
+  .navbar-links {
+    gap: 15px;
+  }
+  .navbar-link {
+    font-size: 1em;
+  }
+}
+
+/* --- Header/Navigation Bar --- */
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #000000;
+  color: #F0F0F0; /* General text color for header */
+  padding: 10px 0; /* Reduced padding */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.main-header .container {
+  display: flex;
+  justify-content: space-between; /* Space out elements */
+  align-items: center;
+}
+
+/* Header Logo Image Styling */
+.logo {
+  flex-shrink: 0;
+  display: block;
+}
+.logo img {
+  height: 40px; /* Adjust height as needed for desktop */
+  width: auto; /* Maintain aspect ratio */
+  vertical-align: middle;
+  transition: transform 0.3s ease;
+}
+.logo img:hover { /* Hover on img inside logo a */
+  transform: scale(1.05);
+}
+
+/* Desktop navigation links */
+.main-nav {
+  flex-grow: 1; /* Allows nav to take available space */
+  display: flex;
+  justify-content: center; /* Center nav items on desktop */
+  align-items: center;
+}
+.main-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 25px; /* Spacing between navigation items */
+}
+.main-nav ul li a {
+  color: #F0F0F0; /* Light gray for regular nav links */
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: 400; /* Normal weight for regular links */
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  padding-bottom: 5px; /* Space for underline */
+  position: relative; /* For the underline */
+}
+.main-nav ul li a:hover {
+  color: #FFC107;
+}
+/* Active link styling */
+.main-nav ul li a.active-link {
+  color: #FFC107; /* Dull Yellow for active link */
+  font-weight: bold;
+}
+.main-nav ul li a.active-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #FFC107;
+  border-radius: 1px;
+}
+
+/* Auth/Profile Button (Common Style) */
+.auth-button {
+  background-color: #FFC107;
+  color: #000000;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Iran Sans', sans-serif;
+}
+.auth-button:hover {
+  background-color: #FFA500;
+  color: #333333;
+}
+
+/* Corrected Login/Signup Button Styling */
+.login-signup-btn {
+    background-color: #FFC107;
+    color: #000000;
+    border: none;
+    padding: 8px 16px; /* Adjusted padding to be smaller */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95em; /* Adjusted font-size to be smaller */
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Iran Sans', sans-serif;
+}
+.login-signup-btn:hover {
+    background-color: #FFA500;
+    color: #333333;
+}
+
+/* Desktop specific elements */
+.desktop-header-btn {
+  flex-shrink: 0;
+}
+/* Mobile specific elements (hidden by default on desktop) */
+.mobile-menu-btn-wrapper, .hamburger-menu, .mobile-header-btn {
+  display: none;
+}
+
+/* Responsive Adjustments for Header */
+@media (max-width: 768px) {
+  /* Header Mobile Layout: [Auth Button] [Space] [Logo] [Hamburger] */
+  .main-header .container {
+    flex-wrap: nowrap; /* Prevent wrapping in header */
+    justify-content: space-between; /* Space out primary children */
+    align-items: center;
+    flex-direction: row; /* Set flex-direction to row for mobile header container */
+  }
+
+  /* Specific rule for header-icons to enable flex on mobile */
+  .header-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    order: 1; /* Position to the far left in RTL header */
+    margin-left: auto; /* Pushes it to the far right */
+  }
+
+  /* Ensure direct children of .main-header .container are ordered */
+  .logo {
+    order: 2; /* Logo is visually in the middle */
+    margin-left: 10px; /* Space from button group */
+    margin-right: 0; /* Remove auto margin */
+  }
+
+  /* Hamburger menu and mobile header button display/order are handled by header-icons' flexbox now */
+  .mobile-menu-btn-wrapper { /* Contains Login/Signup Button in mobile nav */
+    display: block; /* Ensure it shows in mobile nav */
+    order: unset; /* Remove order from here as it's now handled by header-icons or specific children */
+    margin-left: auto; /* Re-apply margin-left if needed for spacing, or let header-icons handle */
+  }
+
+  .mobile-header-btn { /* The button itself, inside header-icons */
+    display: none; /* THIS IS THE FIX! */
+    padding: 8px 15px; /* Slightly smaller for mobile header */
+    font-size: 0.9em;
+  }
+
+  .hamburger-menu { /* The hamburger itself, inside header-icons */
+    display: flex; /* Show hamburger */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 25px;
+    height: 20px;
+    /* Order not needed here, as it's handled by header-icons' internal flexbox */
+  }
+
+  .hamburger-menu span {
+    background-color: #FFC107; /* Consistent color */
+    height: 3px;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+  }
+  /* Hamburger active state animation (re-applied as it was in previous code) */
+  .hamburger-menu.active span:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+  .hamburger-menu.active span:nth-child(2) { opacity: 0; }
+  .hamburger-menu.active span:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
+
+
+  .desktop-header-btn {
+    display: none; /* Hide desktop button */
+  }
+  .main-nav {
+    /* Mobile menu itself (off-screen by default) */
+    position: fixed;
+    top: 60px; /* Adjust based on new header height */
+    right: 0;
+    height: calc(100% - 60px); /* Fill remaining height */
+    width: 0; /* Hidden by default */
+    max-width: 0; /* Hidden by default */
+    overflow-x: hidden;
+    background-color: #0a0a0a;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.7);
+    transition: width 0.3s ease-in-out, max-width 0.3s ease-in-out; /* Animate width */
+    z-index: 999;
+    padding: 0; /* No padding when hidden */
+    display: flex; /* Use flex for column layout */
+    flex-direction: column;
+    align-items: flex-end; /* Align links to the right (RTL) */
+  }
+  .main-nav.active {
+    width: 70%; /* Open width */
+    max-width: 250px;
+    padding: 20px; /* Padding when open */
+  }
+  .main-nav ul {
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+  .main-nav ul li a {
+    font-size: 1.1em;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+    display: block; /* Make link clickable across full width */
+  }
+  .main-nav ul li:last-child a {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-header {
+    padding: 8px 0;
+  }
+  .logo img {
+    height: 30px;
+  }
+  .mobile-menu-btn-wrapper .auth-button {
+    padding: 6px 12px;
+    font-size: 0.8em;
+  }
+}

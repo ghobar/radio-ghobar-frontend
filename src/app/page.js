@@ -5,6 +5,7 @@ import HeroSection from "@/components/HeroSection";
 import LatestEpisodesSection from "@/components/LatestEpisodesSection";
 import FeaturedShopSection from "@/components/FeaturedShopSection";
 import RadioChannelsSection from "@/components/RadioChannelsSection";
+import '../styles/home.css';
 
 export default function Home() {
   return (

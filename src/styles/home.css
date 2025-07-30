@@ -1,0 +1,272 @@
+/* src/styles/home.css */
+
+/* --- HERO SECTION --- */
+.hero-section {
+  position: relative;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #FFC107; /* Dull Yellow for hero text */
+  background-color: #000000; /* Pure black base */
+  margin-top: 60px; /* Space for fixed header */
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Set background as requested */
+  box-shadow: inset 0 0 100px rgba(255, 193, 7, 0.2); /* Add box-shadow for halo */
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: 4.5em;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #FFC107;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero-content .slogan {
+  font-size: 1.8em;
+  margin-bottom: 40px;
+  color: #FFC107;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Common CTA Button Style (used in Hero and other sections) */
+.cta-button {
+  background-color: #FFC107;
+  color: #000000;
+  border: none;
+  padding: 18px 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.5em;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-family: 'Iran Sans', sans-serif;
+  text-decoration: none !important; /* CRITICAL FIX: Ensure no underline */
+}
+.cta-button:hover {
+  background-color: #FFA500;
+  transform: translateY(-3px);
+}
+
+/* --- Section Titles --- */
+section h2 {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #D3D3D3; /* Light gray text for section titles */
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* --- Card Sections Common Styles --- */
+section { /* Base padding and background for all sections */
+  padding: 60px 0;
+  background-color: #0a0a0a; /* Secondary background for sections */
+  text-align: center; /* Center the title */
+}
+
+.featured-shop-section,
+.radio-channels-section { /* Alternate section background color */
+  background-color: #000000;
+}
+
+/* Common wrapper for cards (Episodes, Products, Channels) */
+.episode-cards-wrapper,
+.product-grid,
+.channel-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centering cards */
+  gap: 30px; /* Spacing between cards */
+}
+
+/* Common Card Styling */
+.episode-card,
+.product-card,
+.channel-card {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 280px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  /* Adjustments for button alignment below */
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+}
+.episode-card:hover,
+.product-card:hover,
+.channel-card:hover {
+  transform: translateY(-5px);
+}
+
+.episode-card img,
+.product-card img,
+.channel-card img {
+  width: 100%;
+  height: 180px; /* Consistent image height for episodes/channels */
+  object-fit: cover;
+  border-bottom: 2px solid #FFC107; /* Yellow border under image */
+  margin-bottom: 15px; /* Spacing from card-details */
+}
+.product-card img { /* Specific height for product images */
+  height: 200px;
+}
+.channel-card img { /* Specific height for channel images */
+  height: 180px;
+}
+
+/* New: Card details wrapper for consistent height and text alignment */
+.episode-card .card-details,
+.product-card .card-details,
+.channel-card .card-details {
+    padding: 0 15px 20px; /* Adjust padding here, including new padding-bottom */
+    flex-grow: 1; /* Allow content to take available vertical space */
+    display: flex; /* Make details itself a flex container */
+    flex-direction: column; /* Stack title and paragraph */
+    justify-content: flex-start; /* Align text to top of details area */
+}
+
+.episode-card h3,
+.product-card h3,
+.channel-card h3 {
+  font-size: 1.4em;
+  color: #FFC107; /* Dull Yellow for titles */
+  margin: 0; /* Ensure no top margin */
+  margin-bottom: 5px; /* Consistent spacing */
+  padding: 0 15px; /* Keep original horizontal padding */
+  line-height: 1.4; /* Ensure consistent line height */
+}
+
+.product-card h3 { /* Override specific for product h3 */
+  color: #A6E3B8; /* Light Green for product titles */
+}
+
+
+.episode-card p,
+.product-card p,
+.channel-card p {
+  font-size: 1em;
+  color: #B0B0B0; /* Lighter gray for subtitles/descriptions */
+  margin: 0; /* Ensure no top margin */
+  margin-bottom: 15px; /* Consistent margin bottom for paragraph */
+  padding: 0 15px; /* Keep original horizontal padding */
+  line-height: 1.5; /* Ensure consistent line height */
+  flex-grow: 1; /* Allow paragraph to take remaining vertical space within card-details */
+}
+
+/* Card Specific Button (Listen, View Product, View Channel) */
+.episode-card button,
+.product-card button,
+.channel-card button {
+  background-color: #A0D8F1; /* Light Blue accent */
+  color: #000000;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  font-family: 'Iran Sans', sans-serif;
+  margin-top: auto; /* Push button to the bottom of the card */
+  align-self: center; /* Center the button horizontally within the card */
+  margin-bottom: 20px; /* NEW: Add margin-bottom for spacing from card edge */
+}
+.episode-card button:hover,
+.product-card button:hover,
+.channel-card button:hover {
+  background-color: #80C8E1;
+}
+
+/* --- View All Channels Link --- */
+.channel-view-all {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* --- Responsive Adjustments for Home Page Sections --- */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 3em;
+  }
+  .hero-content .slogan {
+    font-size: 1.2em;
+  }
+  .cta-button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+  }
+
+  /* Section adjustments */
+  section {
+    padding: 40px 15px;
+  }
+  section h2 {
+    font-size: 2em;
+    margin-bottom: 25px;
+  }
+
+  /* Card adjustments */
+  .episode-card,
+  .product-card,
+  .channel-card {
+    width: 90%; /* Max width for single column on mobile */
+    max-width: 350px;
+    margin: 0 auto; /* Center individual cards */
+    padding: 10px;
+  }
+  .episode-card h3,
+  .product-card h3,
+  .channel-card h3 {
+    font-size: 1.2em;
+  }
+  .episode-card p,
+  .product-card p,
+  .channel-card p {
+    font-size: 0.9em;
+  }
+  .episode-card button,
+  .product-card button,
+  .channel-card button {
+    padding: 8px 15px;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2.5em;
+  }
+  .hero-content .slogan {
+    font-size: 1em;
+  }
+  .cta-button {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+
+  section {
+    padding: 30px 10px;
+  }
+  section h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+  }
+}
