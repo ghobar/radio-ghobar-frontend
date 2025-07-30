@@ -21,7 +21,7 @@ export default function FooterComponent() { // Renamed from Footer for clarity
           <Link href="#">فیسبوک</Link>
           <Link href="#">توییتر</Link>
           <Link href="#">اینستاگرام</Link>
-          <Link href="/terms">شرایط و ضوابط</Link> {/* FIX: Removed .html suffix */}
+          <Link href="/terms-conditions">شرایط و ضوابط</Link> {/* FIX: Removed .html suffix */}
         </div>
       </div>
     </footer>

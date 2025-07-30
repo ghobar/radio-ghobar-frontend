@@ -1,0 +1,177 @@
+/* src/styles/terms-conditions.css */
+
+.terms-page-main {
+    padding-top: 90px; /* Space for fixed header */
+    padding-bottom: 60px; /* Space for footer */
+    min-height: calc(100vh - 160px); /* Adjust based on header/footer height */
+}
+
+.page-title {
+    font-size: 3em;
+    color: #FFC107; /* Dull Yellow for main title */
+    text-align: center;
+    margin-bottom: 50px;
+    padding-top: 20px;
+    font-weight: bold;
+}
+
+.terms-content-container {
+    background-color: #0a0a0a; /* Slightly lighter dark background for the content container */
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    max-width: 900px; /* Limit width for long text readability */
+    margin: 0 auto; /* Center the container */
+    color: #F0F0F0; /* Light text for readability */
+    line-height: 1.8; /* Increased line height for readability */
+    font-size: 1.05em; /* Slightly larger base font size */
+    text-align: justify; /* Justify paragraphs for a formal look */
+}
+
+.terms-content-container h3 {
+    font-size: 2em;
+    color: #FFC107; /* Dull Yellow for main headings */
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+    padding-bottom: 10px;
+    text-align: right; /* Align headings to the right */
+}
+
+.terms-content-container h3:first-child {
+    margin-top: 0; /* No top margin for the very first heading */
+}
+
+.terms-content-container p {
+    margin-bottom: 1.5em; /* Space between paragraphs */
+}
+
+.terms-content-container ul {
+    list-style: none; /* Remove default bullet points */
+    padding: 0;
+    margin-bottom: 1.5em;
+    margin-right: 20px; /* Indent list slightly for RTL */
+}
+
+.terms-content-container ul li {
+    position: relative;
+    padding-right: 20px; /* Space for custom bullet */
+    margin-bottom: 0.8em;
+}
+
+.terms-content-container ul li::before {
+    content: '•'; /* Custom bullet point */
+    color: #A6E3B8; /* Light Green bullet */
+    position: absolute;
+    right: 0;
+    font-size: 1.2em;
+    top: -2px;
+}
+
+.terms-content-container strong {
+    color: #A0D8F1; /* Light Blue for strong/bold text */
+}
+
+.terms-content-container a {
+    color: #D6BCFA; /* Light Purple for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.terms-content-container a:hover {
+    color: #C0A8E9;
+    text-decoration: underline;
+}
+
+.terms-content-container .last-updated {
+    font-size: 0.9em;
+    color: #808080;
+    text-align: left; /* Align to the left (for RTL) */
+    margin-top: 40px;
+    border-top: 1px dashed rgba(240, 240, 240, 0.1);
+    padding-top: 15px;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1024px) {
+    .page-title {
+        font-size: 2.5em;
+    }
+
+    .terms-content-container {
+        padding: 30px;
+        font-size: 1em;
+    }
+
+    .terms-content-container h3 {
+        font-size: 1.8em;
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+
+    .terms-content-container {
+        padding: 20px;
+        line-height: 1.7;
+    }
+
+    .terms-content-container h3 {
+        font-size: 1.6em;
+        margin-top: 25px;
+        margin-bottom: 12px;
+    }
+
+    .terms-content-container p {
+        margin-bottom: 1.2em;
+    }
+
+    .terms-content-container ul {
+        margin-right: 15px;
+        margin-bottom: 1.2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 1.8em;
+    }
+
+    .terms-content-container {
+        padding: 15px;
+        font-size: 0.9em;
+    }
+
+    .terms-content-container h3 {
+        font-size: 1.4em;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .terms-content-container p {
+        margin-bottom: 1em;
+    }
+
+    .terms-content-container ul {
+        margin-right: 10px;
+        margin-bottom: 1em;
+    }
+    .terms-content-container ul li {
+        padding-right: 18px;
+    }
+    .terms-content-container ul li::before {
+        font-size: 1em;
+    }
+
+    .terms-content-container .last-updated {
+        font-size: 0.8em;
+        margin-top: 25px;
+        padding-top: 10px;
+    }
+}
