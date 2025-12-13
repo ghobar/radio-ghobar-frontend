@@ -15,7 +15,7 @@
     align-items: flex-start; /* Align items to the top */
 }
 
-/* Profile Sidebar */
+/* Profile sidebar */
 .profile-sidebar {
     flex: 0 0 250px; /* Fixed width for sidebar */
     background-color: #0a0a0a; /* Slightly lighter dark background */

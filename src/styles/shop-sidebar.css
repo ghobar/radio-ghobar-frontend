@@ -1,0 +1,124 @@
+:root {
+  --brand-yellow: #E39D0A;
+}
+
+.rg-sidebar {
+  width: 260px;
+  background: #0d0d0d;
+  border-radius: 14px;
+  border: 1px solid #222;
+  padding: 18px 16px 20px 16px;
+  color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-family: inherit;
+}
+
+.rg-sidebar-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--brand-yellow);
+  margin: 0 0 6px 0;
+  border-right: 3px solid var(--brand-yellow);
+  padding-right: 8px;
+}
+
+.rg-sidebar-section {
+  border-top: 1px solid #191919;
+  padding-top: 10px;
+}
+
+.rg-section-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+/* دسته اصلی */
+
+.rg-main-group-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.rg-main-btn {
+  flex: 1;
+  padding: 6px 0;
+  border-radius: 999px;
+  border: 1px solid #333;
+  background: #141414;
+  color: #ddd;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.rg-main-btn.active {
+  background: var(--brand-yellow);
+  color: #000;
+  border-color: var(--brand-yellow);
+}
+
+/* لیست چک‌باکس‌ها */
+
+.rg-checkbox-list {
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.rg-checkbox-list::-webkit-scrollbar {
+  width: 6px;
+}
+.rg-checkbox-list::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+}
+
+.rg-checkbox-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 3px 2px;
+}
+
+.rg-checkbox-row input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--brand-yellow);
+}
+
+/* موضوع طرح */
+
+.rg-topic-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rg-topic-btn {
+  width: 100%;
+  text-align: right;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #141414;
+  color: #ddd;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.rg-topic-btn.active {
+  background: var(--brand-yellow);
+  color: #000;
+  border-color: var(--brand-yellow);
+}
+
+/* بندها کمی جمع‌وجورتر */
+
+.rg-band-list .rg-checkbox-row span {
+  font-size: 0.85rem;
+}

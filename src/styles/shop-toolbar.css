@@ -1,0 +1,99 @@
+:root {
+  --brand-yellow: #E39D0A;
+}
+
+.shop-toolbar {
+  width: 97%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background-color: #080808;
+  border-radius: 14px;
+  padding: 10px 18px;
+  border: 1px solid #181818;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
+}
+
+/* search pill */
+.toolbar-search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #101010;
+  border-radius: 999px;
+  padding: 6px 14px;
+  border: 1px solid #2a2a2a;
+}
+
+.toolbar-search .icon {
+  width: 18px;
+  height: 18px;
+  color: var(--brand-yellow);
+}
+
+.toolbar-search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #f0f0f0;
+  font-size: 0.95rem;
+  padding: 6px 0;
+}
+
+.toolbar-search input::placeholder {
+  color: #777777;
+}
+
+/* sort pill */
+
+.toolbar-sort {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #101010;
+  border-radius: 999px;
+  padding: 6px 14px;
+  border: 1px solid #2a2a2a;
+  min-width: 190px;
+}
+
+.toolbar-sort .icon {
+  width: 18px;
+  height: 18px;
+  color: var(--brand-yellow);
+}
+
+.toolbar-sort select {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #f0f0f0;
+  font-size: 0.9rem;
+  padding: 6px 0;
+  appearance: none;
+}
+/* =========================
+   FIX SELECT DROPDOWN STYLE
+========================= */
+
+.shop-toolbar select {
+  background-color: #101010;
+  color: #f0f0f0;
+}
+
+/* dropdown options */
+.shop-toolbar select option {
+  background-color: #101010;
+  color: #f0f0f0;
+}
+
+/* hover / selected (برای بعضی مرورگرها) */
+.shop-toolbar select option:checked,
+.shop-toolbar select option:hover {
+  background-color: #1c1c1c;
+  color: #f5c400;
+}
