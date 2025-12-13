@@ -4,6 +4,7 @@ import { useState } from 'react';
 import ShopSidebar from '@/components/shop/ShopSidebar';
 import ShopToolbar from '@/components/shop/ShopToolbar';
 import '@/styles/shop-layout.css';
+import ProductCard from "@/components/shop/ProductCard";
 
 export default function ShopPage() {
 
@@ -49,12 +50,66 @@ export default function ShopPage() {
 
           {/* PRODUCTS GRID */}
           <div className="shop-products-grid">
-            <div className="product-card">محصول ۱</div>
-            <div className="product-card">محصول ۲</div>
-            <div className="product-card">محصول ۳</div>
-            <div className="product-card">محصول ۴</div>
-            <div className="product-card">محصول ۵</div>
-            <div className="product-card">محصول ۶</div>
+            <ProductCard
+              product={{
+                title: 'تی‌شرت Pantera',
+                price: 1900000,
+                images: [
+                  '/assets/images/11-1.jpg',
+                  '/assets/images/PANTERA FLOODS.jpeg'
+                ]
+              }}
+            />
+                        <ProductCard
+              product={{
+                title: 'تی‌شرت acdc',
+                price: 1900000,
+                images: [
+                  '/assets/images/1-1.jpg',
+                  '/assets/images/PANTERA FLOODS.jpeg'
+                ]
+              }}
+            />
+            <ProductCard
+              product={{
+                title: 'تی‌شرت Pantera',
+                price: 1900000,
+                images: [
+                  '/assets/images/5-1.jpg',
+                  '/assets/images/PANTERA FLOODS.jpeg'
+                ]
+              }}
+            />
+                        <ProductCard
+              product={{
+                title: 'تی‌شرت acdc',
+                price: 1900000,
+                images: [
+                  '/assets/images/12-1.jpg',
+                  '/assets/images/PANTERA FLOODS.jpeg'
+                ]
+              }}
+            />
+            <ProductCard
+              product={{
+                title: 'تی‌شرت Pantera',
+                price: 1900000,
+                images: [
+                  '/assets/images/10.jpg',
+                  '/assets/images/PANTERA FLOODS.jpeg'
+                ]
+              }}
+            />
+                        <ProductCard
+              product={{
+                title: 'تی‌شرت acdc',
+                price: 1900000,
+                images: [
+                  '/assets/images/13-1.jpg',
+                  '/assets/images/PANTERA FLOODS.jpeg'
+                ]
+              }}
+            />
           </div>
 
         </section>
