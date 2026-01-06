@@ -86,14 +86,14 @@ section { /* Base padding and background for all sections */
   background-color: #000000;
 }
 
-/* Common wrapper for cards (Episodes, Products, Channels) */
+/* Common wrapper for episodes (Episodes, Products, Channels) */
 .episode-cards-wrapper,
 .product-grid,
 .channel-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Centering cards */
-  gap: 30px; /* Spacing between cards */
+  justify-content: center; /* Centering episodes */
+  gap: 30px; /* Spacing between episodes */
 }
 
 /* Common Card Styling */
@@ -229,7 +229,7 @@ section { /* Base padding and background for all sections */
   .channel-card {
     width: 90%; /* Max width for single column on mobile */
     max-width: 350px;
-    margin: 0 auto; /* Center individual cards */
+    margin: 0 auto; /* Center individual episodes */
     padding: 10px;
   }
   .episode-card h3,

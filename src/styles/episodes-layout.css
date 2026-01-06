@@ -1,0 +1,61 @@
+.episodes-page {
+  background: #050505;
+  min-height: 100vh;
+  padding-top: 90px; /* زیر main-header */
+}
+
+/* کانتینر اصلی */
+.episodes-container {
+  width: 95%;
+  max-width: 1600px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 280px 1fr; /* content | sidebar */
+  gap: 32px;
+
+  align-items: start;
+  direction: rtl;
+}
+
+/* بخش کارت‌ها */
+.episodes-products-area {
+  width: 100%;
+}
+
+/* گرید کارت‌ها */
+.episodes-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+}
+
+/* سایدبار */
+.episodes-sidebar-area {
+  position: sticky;
+  top: 110px;
+}
+
+/* tablet */
+@media (max-width: 1100px) {
+  .episodes-container {
+    grid-template-columns: 1fr;
+  }
+
+  .episodes-sidebar-area {
+    order: -1; /* بیاد بالا */
+    margin-bottom: 20px;
+  }
+
+  .episodes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* mobile */
+@media (max-width: 650px) {
+  .episodes-grid {
+    grid-template-columns: 1fr;
+  }
+}

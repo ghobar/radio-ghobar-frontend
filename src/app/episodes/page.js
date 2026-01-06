@@ -1,70 +1,64 @@
-"use client";
-import React, { useState } from "react";
-import "../../styles/episodes.css";
+'use client';
+
+import { useState } from 'react';
+import EpisodesSidebar from '@/components/episodes/EpisodesSidebar';
+import EpisodeCard from '@/components/episodes/EpisodeCard';
+import ShopToolbar from '@/components/shop/ShopToolbar';
+
+import '@/styles/episodes-layout.css';
 
 export default function EpisodesPage() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("همه");
+  const [search, setSearch] = useState('');
+  const [sort, setSort] = useState('default');
 
-  const categories = ["همه", "فصل ۱", "فصل ۲", "فصل ۳", "ویژه"];
-  const episodes = [
-    { id: 1, title: "قسمت ۱: آغاز", category: "فصل ۱" },
-    { id: 2, title: "قسمت ۲: ادامه مسیر", category: "فصل ۱" },
-    { id: 3, title: "قسمت ویژه نوروز", category: "ویژه" },
-    { id: 4, title: "قسمت ۳: بازگشت", category: "فصل ۲" },
-  ];
-
-  const filtered = episodes.filter(
-    (e) =>
-      (selectedCategory === "همه" || e.category === selectedCategory) &&
-      e.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const [filters, setFilters] = useState({
+    season: 'season1',
+    episodeTypes: [],
+  });
 
   return (
-    <div className="page-container">
-      <h1 className="page-title">قسمت‌ها</h1>
-
-      <div className="filter-bar">
-        <div className="search-box">
-          <input
-            type="text"
-            placeholder="جستجو..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+    <main className="episodes-page">
+      <div className="episodes-container">
+        {/* SIDEBAR */}
+        <aside className="episodes-sidebar-area">
+          <EpisodesSidebar
+            filters={filters}
+            onChange={setFilters}
           />
-          <button>جستجو</button>
-        </div>
+        </aside>
 
-        <div className="sort-dropdown">
-          <select>
-            <option>مرتب‌سازی بر اساس جدیدترین</option>
-            <option>قدیمی‌ترین</option>
-            <option>پرمخاطب‌ترین</option>
-          </select>
-        </div>
-      </div>
+        {/* PRODUCTS AREA */}
+        <section className="episodes-products-area">
 
-      <div className="categories">
-        {categories.map((c) => (
-          <button
-            key={c}
-            onClick={() => setSelectedCategory(c)}
-            className={selectedCategory === c ? "active" : ""}
-          >
-            {c}
-          </button>
-        ))}
-      </div>
+          {/* TOOLBAR – دقیقاً مثل Shop */}
+          <ShopToolbar
+            search={search}
+            setSearch={setSearch}
+            sort={sort}
+            setSort={setSort}
+          />
 
-      <div className="items-grid">
-        {filtered.map((e) => (
-          <div key={e.id} className="item-card">
-            <div className="thumbnail"></div>
-            <h3>{e.title}</h3>
-            <p>{e.category}</p>
+          {/* CARDS */}
+          <div className="episodes-grid">
+            <EpisodeCard title="اپیزود ۱" />
+            <EpisodeCard title="اپیزود ۲" />
+            <EpisodeCard title="اپیزود ۳" />
+            <EpisodeCard title="اپیزود ۴" />
+            <EpisodeCard title="اپیزود ۱" />
+            <EpisodeCard title="اپیزود ۲" />
+            <EpisodeCard title="اپیزود ۳" />
+            <EpisodeCard title="اپیزود ۴" />
+            <EpisodeCard title="اپیزود ۱" />
+            <EpisodeCard title="اپیزود ۲" />
+            <EpisodeCard title="اپیزود ۳" />
+            <EpisodeCard title="اپیزود ۴" />
           </div>
-        ))}
+
+        </section>
+
+
+
       </div>
-    </div>
+    </main>
   );
 }
