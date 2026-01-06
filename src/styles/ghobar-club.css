@@ -1,0 +1,67 @@
+.rg-page {
+  background: #050505;
+  min-height: 100vh;
+  padding-top: 90px;
+}
+
+/* کانتینر اصلی دقیقاً مثل episodes */
+.rg-container {
+  width: 95%;
+  max-width: 1600px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 280px 1fr; /* content | sidebar (مثل episodes) */
+  gap: 32px;
+
+  align-items: start;
+  direction: rtl;
+}
+
+.rg-content {
+  width: 100%;
+}
+
+.rg-page-title {
+  margin: 0 0 14px 0;
+  color: #f5f5f5;
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+.rg-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+}
+
+/* سایدبار مثل episodes */
+.rg-sidebar-area {
+  position: sticky;
+  top: 110px;
+}
+
+/* tablet */
+@media (max-width: 1100px) {
+  .rg-container {
+    grid-template-columns: 1fr;
+  }
+
+  .rg-sidebar-area {
+    order: -1; /* بیاد بالا مثل episodes */
+    margin-bottom: 20px;
+    position: static;
+  }
+
+  .rg-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* mobile */
+@media (max-width: 650px) {
+  .rg-grid {
+    grid-template-columns: 1fr;
+  }
+}

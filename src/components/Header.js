@@ -121,7 +121,7 @@ export default function HeaderComponent() {
               <Link href="/shop" className={isLinkActive('/shop') ? 'active-link' : ''} onClick={closeMenu}>فروشگاه</Link>
             </li>
             <li>
-              <Link href="/ghobar_club" className={isLinkActive('/ghobar_club') ? 'active-link' : ''} onClick={closeMenu}>غبار کلاب</Link>
+              <Link href="/ghobar-club" className={isLinkActive('/ghobar-club') ? 'active-link' : ''} onClick={closeMenu}>غبار کلاب</Link>
             </li>
             <li>
               <Link href="/support" className={isLinkActive('/support') ? 'active-link' : ''} onClick={closeMenu}>حمایت</Link>
