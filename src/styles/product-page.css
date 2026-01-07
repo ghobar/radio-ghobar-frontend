@@ -1,0 +1,95 @@
+:root { --brand-yellow: #E39D0A; }
+
+.rg-product-page{
+  background:#050505;
+  min-height:100vh;
+  padding-top: 90px;
+  direction: rtl;
+}
+
+.rg-product-container{
+  width:95%;
+  max-width: 1400px;
+  margin:0 auto;
+}
+
+.rg-breadcrumb{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  color:#aaa;
+  font-size:.9rem;
+  margin-bottom: 14px;
+}
+.rg-breadcrumb a{ color:#bbb; text-decoration:none; }
+.rg-breadcrumb a:hover{ color: var(--brand-yellow); }
+.rg-breadcrumb .current{ color:#eee; }
+
+.rg-product-top{
+  display:grid;
+  grid-template-columns: 1fr 1fr; /* گالری | اطلاعات */
+  gap: 24px;
+  align-items:start;
+}
+.rg-product-gallery-area {
+  min-width: 0;   /* ✅ جلوی بزرگ شدن عرض به خاطر محتوا رو می‌گیره */
+}
+
+.rg-product-tabs-area{
+  margin-top: 18px;
+}
+
+.rg-related-area{
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1px solid #141414;
+}
+
+/* related */
+.rg-related-title{
+  margin: 0 0 12px 0;
+  color:#f5f5f5;
+  font-weight: 900;
+}
+
+.rg-related-grid{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 16px;
+}
+
+.rg-related-card{
+  display:block;
+  background:#0d0d0d;
+  border:1px solid #222;
+  border-radius:14px;
+  padding:10px;
+  color:#fff;
+  text-decoration:none;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.rg-related-card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.6);
+}
+.rg-related-card .img{
+  width:100%;
+  aspect-ratio: 1/1;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #1a1a1a, #000);
+  margin-bottom: 10px;
+}
+.rg-related-card .t{
+  font-size:.9rem;
+  text-align:center;
+  color:#f5f5f5;
+}
+
+/* responsive */
+@media (max-width: 1000px){
+  .rg-product-top{ grid-template-columns: 1fr; }
+  .rg-related-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 650px){
+  .rg-related-grid{ grid-template-columns: 1fr; }
+}

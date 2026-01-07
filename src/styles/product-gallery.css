@@ -1,0 +1,135 @@
+:root { --brand-yellow: #E39D0A; }
+
+.rg-gallery{
+  background:#0d0d0d;
+  border:1px solid #222;
+  border-radius:14px;
+  padding:12px;
+
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;          /* ✅ خیلی مهم برای جلوگیری از کش آمدن در grid */
+}
+
+/* MAIN */
+.rg-gallery-main{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background: #111;
+  border: 1px solid #1f1f1f;
+
+  direction: ltr;        /* ✅ RTL-safe: اسلایدر داخلش LTR باشد */
+}
+
+/* SLIDER */
+.rg-slider{
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  transition: transform .35s ease;
+  will-change: transform;
+}
+
+.rg-slide{
+  flex: 0 0 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+}
+
+.rg-slide img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* ✅ عکس کامل */
+  display: block;
+}
+
+/* ZOOM LAYER */
+.rg-zoom-layer{
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+
+  background-color: transparent; /* ✅ نذار تو حالت off چیزی رو بپوشونه */
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  transition: opacity .12s ease;
+}
+
+.rg-zoom-layer.on{
+  opacity: 1;
+  background-size: 300%;
+}
+
+/* ARROWS */
+.rg-arrow{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid #2a2a2a;
+  background: rgba(13,13,13,.65);
+  backdrop-filter: blur(6px);
+  color: #f5f5f5;
+  cursor: pointer;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rg-arrow:hover{ border-color: var(--brand-yellow); }
+
+.rg-arrow.left{ left: 10px; }
+.rg-arrow.right{ right: 10px; }
+
+/* THUMBS (scroll افقی واقعی و بدون افزایش عرض) */
+.rg-gallery-thumbs{
+  margin-top: 10px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 4px;
+  box-sizing: border-box;
+}
+
+.rg-thumbs-track{
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  width: max-content;   /* track بزرگ میشه، ولی wrapper اسکرول می‌خوره */
+}
+
+.rg-gallery-thumbs::-webkit-scrollbar { height: 6px; }
+.rg-gallery-thumbs::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+
+.thumb{
+  border:1px solid #2a2a2a;
+  background:#111;
+  border-radius:10px;
+  padding:4px;
+  cursor:pointer;
+  flex: 0 0 auto;
+}
+
+.thumb img{
+  width:72px;
+  height:72px;
+  object-fit:cover;
+  border-radius:8px;
+  display:block;
+}
+
+.thumb.active{ border-color: var(--brand-yellow); }
